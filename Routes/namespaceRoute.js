@@ -272,10 +272,10 @@ router.patch('/', async (req, res) => {
             },
             resourceQuotaSpec: {
                 hard: {
-                    'cpu': String(cpu) + "m", // 1000m = 1 CPU
-                    'memory': String(memory) + "Mi", // 1000Mi = 1GB MEM 
+                    'cpu': String(cpu*1000) + "m", // 1000m = 1 CPU
+                    'memory': String(memory*1000) + "Mi", // 1000Mi = 1GB MEM 
                     'nvidia.com/gpu': String(gpu),
-                    'requests.storage': String(diskspace) + "Mi" // 1000Mi = 1GB Storage
+                    'requests.storage': String(diskspace*1000) + "Mi" // 1000Mi = 1GB Storage
                 }
             }
         }
