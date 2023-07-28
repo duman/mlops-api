@@ -1,0 +1,14 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: proje3
+spec:
+  owner:
+    kind: User
+    name: nobody
+  resourceQuotaSpec:
+    hard:
+      cpu: 2m
+      memory: 16Mi
+      nvidia.com/gpu: '0'
+      requests.storage: 64Mi

@@ -1,0 +1,8 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  name: test@oredata.com
+spec:
+  owner:
+    kind: User
+    name: test@oredata.com

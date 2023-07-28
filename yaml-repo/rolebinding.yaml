@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    role: edit
+    user: bilal.tasdemir@allianz.com.tr
+  name: bilal-tasdemir-allianz.com.tr-proje3-clusterrole-edit
+  namespace: proje3
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeflow-edit
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: bilal.tasdemir@allianz.com.tr

@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  annotations:
+    role: edit
+    user: bilal.tasdemir@allianz.com.tr
+  name: bilal-tasdemir-allianz.com.tr-proje3-clusterrole-edit
+  namespace: proje3
+spec:
+  action: ALLOW
+  rules:
+    - when:
+      - key: request.headers[kubeflow-userid]
+        values:
+          - bilal.tasdemir@allianz.com.tr
