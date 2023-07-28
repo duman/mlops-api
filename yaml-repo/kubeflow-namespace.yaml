@@ -1,14 +1,14 @@
 apiVersion: kubeflow.org/v1beta1
 kind: Profile
 metadata:
-  name: proje3
+  name: cross-sell
 spec:
   owner:
     kind: User
     name: nobody
   resourceQuotaSpec:
     hard:
-      cpu: 2m
-      memory: 16Mi
+      cpu: 64000m
+      memory: 128000Mi
       nvidia.com/gpu: '0'
-      requests.storage: 64Mi
+      requests.storage: 2048000Mi

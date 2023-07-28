@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
+const https = require('https');
+const fs = require('fs');
 
 app.use(cors({
     origin: '*'
@@ -46,6 +48,15 @@ const PORT = 3032;
 const HOST = '127.0.0.1';
 
 module.exports = app;
-app.listen(PORT, () => {
+
+https
+  .createServer(
+    {
+      key: fs.readFileSync("key.pem"),
+      cert: fs.readFileSync("cert.pem"),
+    },
+    app
+  )
+  .listen(PORT, () => {
     console.log(`Running on ${HOST}:${PORT}`);
-});
+  });
