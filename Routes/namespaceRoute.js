@@ -150,7 +150,6 @@ router.post('/', async (req, res) => {
 
     await writeYamlFile('./yaml-repo/kubeflow-namespace.yaml', namespaceData);
 
-    /*
     await exec("cd yaml-repo && kubectl apply -f kubeflow-namespace.yaml", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
@@ -162,7 +161,6 @@ router.post('/', async (req, res) => {
         }
         console.log(`stdout: ${stdout}`);
     });
-    */
 
     db.run("INSERT INTO Namespaces (nsname, cpu, mem, gpu, diskspace, teamname) VALUES ('" + nsname + "', '" + cpu*1000 + "', '" + memory*1000 + "', '" + gpu + "', '" + diskspace*1000 + "', '" + teamname + "')");
     // db.run("INSERT INTO TeamNamespace (teamname, nsname) VALUES ('" + teamname + "', '" + nsname + "')");
@@ -285,7 +283,6 @@ router.patch('/', async (req, res) => {
 
     await writeYamlFile('./yaml-repo/kubeflow-namespace.yaml', namespaceData);
 
-    /*
     await exec("cd yaml-repo && kubectl apply -f kubeflow-namespace.yaml", (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
@@ -297,7 +294,6 @@ router.patch('/', async (req, res) => {
         }
         console.log(`stdout: ${stdout}`);
     });
-    */
 
     db.run("UPDATE Namespaces SET cpu = '" + cpu*1000 + "', mem = '" + memory*1000 + "', gpu = '" + gpu + "', diskspace = '" + diskspace*1000 + "' WHERE nsname = '" + nsname + "'");
 
@@ -414,7 +410,6 @@ router.delete('/:nsname?', async (req, res) => {
     const db = new sqlite3.Database('test.db');
 
     await db_each("DELETE FROM Namespaces WHERE nsname = '" + nsname + "'");
-    /*
     await exec("kubectl delete profiles " + nsname, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
@@ -426,8 +421,7 @@ router.delete('/:nsname?', async (req, res) => {
         }
         console.log(`stdout: ${stdout}`);
     });
-    */
-
+ 
     return res.status(200).send({message: "Namespace has been successfully removed from the table."});
 
     async function db_each(query) {

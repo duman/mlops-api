@@ -154,7 +154,6 @@ router.post('/', async(req, res) => {
         await replaceInFile(options1);
         await replaceInFile(options2);
 
-        /*
         await exec("cd yaml-repo && kubectl apply -f authorizationpolicy.yaml", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -166,9 +165,7 @@ router.post('/', async(req, res) => {
             }
             console.log(`stdout: ${stdout}`);
         });
-        */
-
-        /*
+        
         await exec("cd yaml-repo && kubectl apply -f rolebinding.yaml", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -180,7 +177,6 @@ router.post('/', async(req, res) => {
             }
             console.log(`stdout: ${stdout}`);
         });
-        */
     }
 
     async function db_each(query) {
@@ -243,7 +239,6 @@ router.delete('/:username?/:teamname?', async(req, res) => {
         let nsname = item.nsname;
         let replacedEmail = email.replace('@', '-').replace('.', '-');
         let rolename = replacedEmail + '-' + nsname + '-clusterrole-edit';
-        /*
         await exec("kubectl delete rolebinding -n " + nsname + " " + rolename, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -266,7 +261,6 @@ router.delete('/:username?/:teamname?', async(req, res) => {
             }
             console.log(`stdout: ${stdout}`);
         });
-        */
     }
 
     return res.status(200).send({message: "User has been successfully removed from the team."});

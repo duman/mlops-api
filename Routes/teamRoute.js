@@ -327,7 +327,6 @@ router.delete('/:teamname?', async (req, res) => {
     for (item of ns_info) {
         let nsname = item.nsname;
         await db_each("DELETE FROM Namespaces WHERE nsname = '" + nsname + "'");
-        /*
         await exec("kubectl delete profiles " + nsname, (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
@@ -339,11 +338,9 @@ router.delete('/:teamname?', async (req, res) => {
             }
             console.log(`stdout: ${stdout}`);
         });
-        */
     }
 
     // DELETE FROM UserTeam WHERE username = 'ldapuser1@oredata.com' AND teamname = 'test';
-    /*
     const namespace_info = await db_each("SELECT nsname, cpu, mem, gpu, diskspace FROM Namespaces WHERE teamname = '" + teamname + "'");
     const all_team_members = await db_each("SELECT email, username FROM UserTeam WHERE teamname = '" + teamname + "'");
     for (let member of all_team_members) {
@@ -352,7 +349,6 @@ router.delete('/:teamname?', async (req, res) => {
             let nsname = item.nsname;
             let replacedEmail = email.replace('@', '-').replace('.', '-');
             let rolename = replacedEmail + '-' + nsname + '-clusterrole-edit';
-            /*
             await exec("kubectl delete rolebinding -n " + nsname + " " + rolename, (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
@@ -378,7 +374,6 @@ router.delete('/:teamname?', async (req, res) => {
             
         }
     }
-    */
 
     const username = await db_each("SELECT username FROM UserRole WHERE teamname = '" + teamname + "'");
     await db_each("DELETE FROM UiUsers WHERE username = '" + username + "'");
